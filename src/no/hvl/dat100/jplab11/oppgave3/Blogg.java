@@ -22,76 +22,78 @@ public class Blogg {
 
 	public int getAntall() {
 
-        int antall = 0;
-        if (nesteledig > 0) {
-            return antall = nesteledig;
-        }
-        return antall;
-    }
+		int antall = 0;
+		if (nesteledig > 0) {
+			return antall = nesteledig;
+		}
+		return antall;
+	}
 
-    public Innlegg[] getSamling() {
-        return innleggtabell;
+	public Innlegg[] getSamling() {
+		return innleggtabell;
 
-    }
+	}
 
-    public int finnInnlegg(Innlegg innlegg) {
+	public int finnInnlegg(Innlegg innlegg) {
 
-        boolean funnet = false;
-        int i = 0;
+		boolean funnet = false;
+		int i = 0;
 
-        while (i < nesteledig && !funnet) {
-            if (innleggtabell[i].erLik(innlegg)) {
-                funnet = true;
-                return i;
-            }
-            i++;
-        }
-        return -1;
-    }
+		while (i < nesteledig && !funnet) {
+			if (innleggtabell[i].erLik(innlegg)) {
+				funnet = true;
+				return i;
+			}
+			i++;
+		}
+		return -1;
+	}
 
-    public boolean finnes(Innlegg innlegg) {
+	public boolean finnes(Innlegg innlegg) {
 
-        boolean finnes = false;
-        int i = 0;
+		boolean finnes = false;
+		int i = 0;
 
-        while (i < nesteledig && !finnes) {
-            if (innleggtabell[i].erLik(innlegg)) {
-                return finnes = true;
-            }
-            i++;            
-        }
-        return false;
-    }
+		while (i < nesteledig && !finnes) {
+			if (innleggtabell[i].erLik(innlegg)) {
+				return finnes = true;
+			}
+			i++;
+		}
+		return false;
+	}
 
-    public boolean ledigPlass() {
+	public boolean ledigPlass() {
 
-        if (nesteledig < innleggtabell.length) {
-            return true;
-        }
-        return false;
-    }
+		if (nesteledig < innleggtabell.length) {
+			return true;
+		}
+		return false;
+	}
 
-    public boolean leggTil(Innlegg innlegg) {
+	public boolean leggTil(Innlegg innlegg) {
 
-        boolean ny = finnInnlegg(innlegg) == -1;
-        if (ny && nesteledig < innleggtabell.length) {
-            innleggtabell[nesteledig] = innlegg;
-            nesteledig++;
-            return true;
-        } else {
-            return false;
-        }
-    }
+		boolean ny = finnInnlegg(innlegg) == -1;
+		if (ny && nesteledig < innleggtabell.length) {
+			innleggtabell[nesteledig] = innlegg;
+			nesteledig++;
+			return true;
+		} else {
+			return false;
+		}
+	}
 
-    public String toString() {
+	public String toString() {
 
-        String blogg = getAntall() + "\n";
-        
-        for(Innlegg i : innleggtabell) {
-            blogg += i.toString();
-        }
-        return blogg;
-    }
+		String blogg = getAntall() + "\n";
+
+		for (Innlegg i : innleggtabell) {
+			if (i != null) {
+				blogg += i.toString();
+			}
+		}
+		return blogg;
+	}
 
 	// valgfrie oppgaver nedenfor
 
